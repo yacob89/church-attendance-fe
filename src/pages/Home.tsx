@@ -20,7 +20,7 @@ const Home: FC<TypeProps> = (props) => {
   return (
     <View style={styles.containerView}>
       <View style={styles.viewStyle}>
-        <Text>Aktivitas</Text>
+        <Text style={styles.textLabelStyle}>Aktivitas</Text>
         <DropDownPicker
           items={[
             {
@@ -53,7 +53,7 @@ const Home: FC<TypeProps> = (props) => {
           searchablePlaceholderTextColor="gray"
           searchableError={() => <Text>Not Found</Text>}
         />
-        <Text>Nama Kaum Saleh</Text>
+        <Text style={styles.textLabelStyle}>Nama Kaum Saleh</Text>
         <TextInput
           style={styles.textInputStyle}
           onChangeText={(text) => setName(text)}
@@ -83,6 +83,9 @@ const styles = StyleSheet.create({
   bottomViewStyle: {
     alignSelf: 'center',
     margin: 20,
+  },
+  textLabelStyle: {
+    marginTop: 20,
   },
   dropdownStyle: {
     backgroundColor: '#fafafa',
