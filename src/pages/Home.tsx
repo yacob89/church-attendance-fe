@@ -15,7 +15,7 @@ interface TypeProps {
 
 const Home: FC<TypeProps> = (props) => {
   const [activity, setActivity] = useState('usa');
-  const [name, setName] = useState('');
+  const [name, setName] = useState('yacob');
 
   return (
     <View style={styles.containerView}>
@@ -54,13 +54,55 @@ const Home: FC<TypeProps> = (props) => {
           searchableError={() => <Text>Not Found</Text>}
         />
         <Text style={styles.textLabelStyle}>Nama Kaum Saleh</Text>
-        <TextInput
-          style={styles.textInputStyle}
-          onChangeText={(text) => setName(text)}
-          value={name}
+        <DropDownPicker
+          items={[
+            {
+              label: 'Yacob',
+              value: 'yacob',
+              icon: () => <Icon name="flag" size={18} color="#900" />,
+              hidden: true,
+            },
+            {
+              label: 'Han-han',
+              value: 'hanhan',
+              icon: () => <Icon name="flag" size={18} color="#900" />,
+            },
+            {
+              label: 'Johan Lucianus',
+              value: 'JohanLucianus',
+              icon: () => <Icon name="flag" size={18} color="#900" />,
+            },
+            {
+              label: 'Gery',
+              value: 'Gery',
+              icon: () => <Icon name="flag" size={18} color="#900" />,
+            },
+            {
+              label: 'Riswartono',
+              value: 'Riswartono',
+              icon: () => <Icon name="flag" size={18} color="#900" />,
+            },
+            {
+              label: 'Alfian',
+              value: 'Alfian',
+              icon: () => <Icon name="flag" size={18} color="#900" />,
+            },
+          ]}
+          defaultValue={name}
+          containerStyle={{height: 40}}
+          style={styles.dropdownStyle}
+          itemStyle={{
+            justifyContent: 'flex-start',
+          }}
+          dropDownStyle={{backgroundColor: '#fafafa'}}
+          onChangeItem={(item) => setName(item.value)}
+          searchable={true}
+          searchablePlaceholder="Search for an item"
+          searchablePlaceholderTextColor="gray"
+          searchableError={() => <Text>Not Found</Text>}
         />
         <TouchableOpacity
-          style={styles.loginButtonStyle}
+          style={styles.absenButtonStyle}
           onPress={() => console.log('Hoihoi')}>
           <Text>ABSEN</Text>
         </TouchableOpacity>
@@ -100,8 +142,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
   },
-  loginButtonStyle: {
-    marginTop: 4,
+  absenButtonStyle: {
+    marginTop: 20,
     height: 48,
     width: 200,
     textAlign: 'left',
