@@ -1,5 +1,12 @@
-import React, {FC} from 'react';
-import {Button, View, Text, StyleSheet} from 'react-native';
+import React, {FC, useState} from 'react';
+import {
+  Button,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import {NavigationStackProp} from 'react-navigation-stack';
 
 interface TypeProps {
@@ -8,87 +15,60 @@ interface TypeProps {
 }
 
 const Login: FC<TypeProps> = (props) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Login Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => props.navigation.navigate('Home')}
+    <View style={styles.viewStyle}>
+      <Text>Nomer HP</Text>
+      <TextInput
+        style={styles.textInputStyle}
+        keyboardType="numeric"
+        onChangeText={(text) => setUsername(text)}
+        value={username}
       />
+      <Text>Password</Text>
+      <TextInput
+        style={styles.textInputStyle}
+        secureTextEntry={true}
+        onChangeText={(text) => setPassword(text)}
+        value={password}
+      />
+      <TouchableOpacity
+        style={styles.loginButtonStyle}
+        onPress={() => props.navigation.navigate('Home')}>
+        <Text>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    padding: 10,
+  viewStyle: {
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    margin: 20,
   },
-  buttonLanguage: {
-    marginBottom: 4,
+  textInputStyle: {
+    height: 40,
+    width: '75%',
+    paddingLeft: 20,
+    marginBottom: 20,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 20,
+  },
+  loginButtonStyle: {
+    marginTop: 4,
     height: 48,
+    width: 200,
     textAlign: 'center',
     justifyContent: 'center',
     fontSize: 16,
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     borderRadius: 15,
-  },
-  textLanguage: {},
-  container: {
-    flex: 1,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 16,
-    padding: 8,
-    textAlign: 'center',
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  flagStyle: {
-    width: '100%',
-    height: 64,
-  },
-  pickerContainer: {
-    textAlign: 'center',
-    width: '100%',
-  },
-  pickerContainerInner: {
-    textAlign: 'center',
-    width: '70%',
-  },
-  pickerStyle: {
-    textAlign: 'center',
-    width: '70%',
-    alignSelf: 'stretch',
-  },
-  scrollView: {
-    marginHorizontal: 2,
-    height: '100%',
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  text: {
-    fontSize: 16,
-  },
-  title: {
-    textAlign: 'center',
-    marginVertical: 8,
-    fontSize: 20,
-    marginTop: 8,
-    marginBottom: 8,
-  },
-  textStyle: {
-    textAlign: 'center',
-  },
-  wrapperCustom: {
-    borderRadius: 8,
-    padding: 6,
   },
 });
 
