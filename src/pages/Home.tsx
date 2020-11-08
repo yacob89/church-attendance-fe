@@ -16,6 +16,13 @@ interface TypeProps {
 const Home: FC<TypeProps> = (props) => {
   const [activity, setActivity] = useState('usa');
   const [name, setName] = useState('yacob');
+  const [nameList, setNameList] = useState<string[]>([]);
+
+  const addToNameList = (value: string) => {
+    let tempNameList = [...nameList];
+    tempNameList.push(value);
+    setNameList(tempNameList);
+  };
 
   return (
     <View style={styles.containerView}>
@@ -95,12 +102,15 @@ const Home: FC<TypeProps> = (props) => {
             justifyContent: 'flex-start',
           }}
           dropDownStyle={{backgroundColor: '#fafafa'}}
-          onChangeItem={(item) => setName(item.value)}
+          onChangeItem={(item) => addToNameList(item.value)}
           searchable={true}
           searchablePlaceholder="Search for an item"
           searchablePlaceholderTextColor="gray"
           searchableError={() => <Text>Not Found</Text>}
         />
+        {nameList.map((nameValue, index) => {
+          return <Text key={nameValue + index}>{nameValue}</Text>;
+        })}
         <TouchableOpacity
           style={styles.absenButtonStyle}
           onPress={() => console.log('Hoihoi')}>
